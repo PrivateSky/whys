@@ -16,26 +16,26 @@ Pentru implementare am propus crearea unor functii ajutatoare:
 
 Exemplu de  folosire
 
-  var  step1 = declareTopLevelContext("Step1", "Deocument step1 ",
-    function(param, continuation){
-      console.log("step1",continuation);
-    });
-    
-  var  step2 = declareTopLevelContext("Step1", "Document step2 ",
-    function(param, callback){
-      console.log("step2", param);
-      printContexts();
-      callback(getValue("finalCallStep2"));
-    });
-
-  var  mainUseCase = declareTopLevelContext("Main use case", "Declare informations about the the main use case ",
-    function(){
-    setValue("finalCallStep2",dumpContext);
-    step1(true,step2);
-    });
-    
-
-  mainUseCase(step1);
+    var  step1 = declareTopLevelContext("Step1", "Deocument step1 ",
+      function(param, continuation){
+        console.log("step1",continuation);
+      });
+      
+    var  step2 = declareTopLevelContext("Step1", "Document step2 ",
+      function(param, callback){
+        console.log("step2", param);
+        printContexts();
+        callback(getValue("finalCallStep2"));
+      });
+  
+    var  mainUseCase = declareTopLevelContext("Main use case", "Declare informations about the the main use case ",
+      function(){
+      setValue("finalCallStep2",dumpContext);
+      step1(true,step2);
+      });
+      
+  
+    mainUseCase(step1);
 
 
 
