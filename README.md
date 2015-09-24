@@ -9,29 +9,33 @@ Pentru implementare am propus crearea unor functii ajutatoare:
   declareStep(stepName, stepContextDescription, callback) 
   printContexts() will print a stack with context names and actual parameters
   dumpContext()  will print an aray with all the available informations
+   
+  setValue(name, value) : seteaza o valoare in context
+  getValue(name) : returneaza o valoare in context
+
 
 Exemplu de  folosire
 
   var  step1 = declareTopLevelContext("Step1", "Deocument step1 ",
-    function(param){
-      console.log("step1");
+    function(param, continuation){
+      console.log("step1",continuation);
     });
     
-  var  step1 = declareTopLevelContext("Step1", "Document step2 ",
-    function(param){
-      console.log("step2");
+  var  step2 = declareTopLevelContext("Step1", "Document step2 ",
+    function(param, callback){
+      console.log("step2", param);
+      printContexts();
+      callback(getValue("finalCallStep2"));
     });
 
   var  mainUseCase = declareTopLevelContext("Main use case", "Declare informations about the the main use case ",
-    function(param){
+    function(){
+    setValue("finalCallStep2",dumpContext);
+    step1(true,step2);
     });
     
-  
-    
 
-
-
-
+  mainUseCase(step1);
 
 
 
