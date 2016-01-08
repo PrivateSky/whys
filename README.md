@@ -1,8 +1,32 @@
 # tracker
-Error tracker: a new method of tracking errors in Java Script 
+Error tracker: 
+ - a method of tracking errors in Java Script (node.js code)
+ - a method to handle asynchronous code  
 
-Ideea principala este de a executa adauga informatii de context pentru toate functiile publice (API-urile) si toate functiile care pot constitui pasi relevanti in timpul executiei. Un context va retine informatii despre stiva executiei curente si despre parametrii curenti cu care a fost apelat.  
-In momentul aparitiei unei errori sau in orice moment, se poat obtine stiva de contexte si informatiile adiacente relevante. 
+
+Concepts:
+    executionStep:  a call of a function or a synchronously set of calls that can be grouped toghether and contribute to a specific purpose 
+    executionContext: a set of ExecutionSteps 
+     
+
+var f1 = executionStep(function(){
+        printContexts();
+    });
+     
+var f2 = executionStep(function(){
+        f1();
+    });
+
+
+
+
+
+
+Ideea principala este de a executa adauga informatii de context pentru toate functiile publice (API-urile) 
+toate functiile care pot constitui pasi relevanti in timpul executiei. 
+Un context va retine informatii despre stiva executiei curente si despre parametrii curenti cu care a fost apelat.
+  
+In momentul aparitiei unei errori sau in orice moment, se poate obtine stiva de contexte si informatiile adiacente relevante. 
 
 Pentru implementare am propus crearea unor functii ajutatoare:
   declareTopLevelContext(contextName, logContextDescription, callback)
