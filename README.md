@@ -1,68 +1,67 @@
 # tracker
-Error tracker: 
- - a method of tracking errors in Java Script (node.js code)
- - a method to handle asynchronous code  
+why module provides a novel method for tracking errors and for tracking execution of complex Java Script (node.js code) 
 
-
-Concepts:
-    executionStep:  a call of a function or a synchronously set of calls that can be grouped toghether and contribute to a specific purpose 
-    executionContext: a set of ExecutionSteps 
-     
-
-var f1 = executionStep(function(){
-        printContexts();
-    });
-     
-var f2 = executionStep(function(){
-        f1();
-    });
-
-
-
-
-
-
-Ideea principala este de a executa adauga informatii de context pentru toate functiile publice (API-urile) 
-toate functiile care pot constitui pasi relevanti in timpul executiei. 
-Un context va retine informatii despre stiva executiei curente si despre parametrii curenti cu care a fost apelat.
+The why module works by adding a why function the the Function prototype. Basically for every call of an "important" function you can explain "why" that function will be called
+ 
+ For example you can do things like:
+ 
+ Example 1:
+ 
+    var a = function().why("Because i want so"); // a will be a function but at each call we will know why got called
   
-In momentul aparitiei unei errori sau in orice moment, se poate obtine stiva de contexte si informatiile adiacente relevante. 
+ Example 2:
+  
+    function async(function(){}.why("Because thsi is a callback and asynchronously called sometimes");
+ 
+ Example 3:
+ 
+     function f(){}
+     f.why("special call of f")();
+ 
 
-Pentru implementare am propus crearea unor functii ajutatoare:
-  declareTopLevelContext(contextName, logContextDescription, callback)
-  declareStep(stepName, stepContextDescription, callback) 
-  printContexts() will print a stack with context names and actual parameters
-  dumpContext()  will print an aray with all the available informations
+Commented example:
+
+    var assert = require("semantic-firewall").assert;
+    var logger = require("semantic-firewall").logger;
+    var why = require("../lib/why.js");
+    
+    
+    logger.record = function(record){ //you have to integrate with your own logging system by overriding this functions
+       console.log("Failed assert:",JSON.stringify(record));
+    }
+    
+    function nop(){  //do nothing but shown in history
+    
+    }
+    
+    function func(callback){
+        nop.why("For something")();
+        callback(null, why.dump()); // take current execution context
+    };
+    
+    
+    assert.callback("Test example", function(end){
+        func.why("Demonstrate attaching descriptions to future calls")( function(err, result){
+            console.log(result);
+            assert.equal(result.whystack.length, 2);
+            end();
+        });
+    }.why("Attach another description"));
+
+
+The output of teh commented example will be like bellow:
    
-  setValue(name, value) : seteaza o valoare in context
-  getValue(name) : returneaza o valoare in context
+    { whystack: 
+       [ { step: 'Demonstrate attaching descriptions to future calls',
+           args: [Object],
+           other: undefined },
+         { step: 'Attach another description',
+           args: [Object],
+           other: undefined } ],
+      history: [ { step: 'For something', args: [], other: undefined } ],
+      exceptionContextSource: undefined }
+    [Pass] Test example
 
-
-Exemplu de  folosire
-
-    var  step1 = declareTopLevelContext("Step1", "Deocument step1 ",
-      function(param, continuation){
-        console.log("step1",continuation);
-      });
-      
-    var  step2 = declareTopLevelContext("Step1", "Document step2 ",
-      function(param, callback){
-        console.log("step2", param);
-        printContexts();
-        callback(getValue("finalCallStep2"));
-      });
-  
-    var  mainUseCase = declareTopLevelContext("Main use case", "Declare informations about the the main use case ",
-      function(){
-      setValue("finalCallStep2",dumpContext);
-      step1(true,step2);
-      });
-      
-  
-    mainUseCase(step1);
-
-
-
-
-
-
+By calling  why.dump() you can get informations about the set of calls explained with "why" that happened before calling the dump function. 
+You do not have to put the why() calls everywhere but only on important steps of your alghoritm
+ 

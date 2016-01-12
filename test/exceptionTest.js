@@ -3,12 +3,6 @@ var logger = require("semantic-firewall").logger;
 var why = require("../lib/why.js");
 
 
-function asyncExample(callback){
-    setTimeout(callback, 1000);
-}
-
-
-
 var f1 = function(callback){
     throw new Error("Test error");
     //callback(null, why.dump());
@@ -28,7 +22,7 @@ assert.callback("Test with exception", function(end){
 
     f2.why("Forced context")(true, function(err, result){
         console.log("Should not be called!!!", result);
-        assert.equal(result.stack.length, 4);
+        assert.equal(result.whystack.length, 4);
         end();
     });
 }.why(" Test with true argument"));
