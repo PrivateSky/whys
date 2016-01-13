@@ -27,49 +27,61 @@ Commented example:
     var why = require("../lib/why.js");
     
     
-    logger.record = function(record){ //you have to integrate with your own logging system by overriding this functions
-       console.log("Failed assert:",JSON.stringify(record));
+    logger.record = function(record){  //you have to integrate with your own logging system by overriding this functions
+      console.log("Failed assert:",JSON.stringify(record));
     }
     
-    function nop(){  //do nothing but shown in the why history
+    function nop(){  //do nothing but can be recorded in the why history
     
     }
     
     function func(callback){
-        nop.why("For something")();
-        callback(null, why.dump()); // take current execution context
+       nop.why("Nop recording")();
+       callback(null, why.dump());   // why.dump() takes the current execution context
     };
     
     
     assert.callback("Test example", function(end){
-        func.why("Demonstrate attaching descriptions to future calls")( function(err, result){
-            console.log(result);
-            assert.equal(result.whystack.length, 2);
-            end();
-        });
-    }.why("Attach another description"));
+       func.why("Demonstrate attaching descriptions at runtime")( function(err, result){
+           console.log(result);
+           assert.equal(result.whystack.length, 2);
+           end();
+       });
+    }.why("Test callback"));
 
 
-The output of the commented example will be like bellow:
+The output of the commented example is:
    
     { whystack: 
-       [ { step: 'Demonstrate attaching descriptions to future calls',
+       [ { step: 'Callback for func', args: [Object], other: undefined },
+         { step: 'Demonstrate attaching descriptions at runtime',
            args: [Object],
            other: undefined },
-         { step: 'Attach another description',
-           args: [Object],
-           other: undefined } ],
-      history: [ { step: 'For something', args: [], other: undefined } ],
+         { step: 'Test callback', args: [Object], other: undefined } ],
+      history: [ { step: 'Nop recording', args: [], other: undefined } ],
       exceptionContextSource: undefined }
     [Pass] Test example
+    logWhy dummy implementation. Overwrite the logWhy function in the logger
+    Dump: { whystack: [ { step: 'Test callback', args: [Object], other: undefined } ],
+      history: 
+       [ { step: 'Nop recording', args: [], other: undefined },
+         { step: 'Callback for func', args: [Object], other: undefined },
+         { step: 'Demonstrate attaching descriptions at runtime',
+           args: [Object],
+           other: undefined } ],
+      exceptionContextSource: undefined }
 
-By calling  why.dump() you can get informations about the set of calls explained with "why" that happened before calling the dump function. 
-You do not have to put the why() calls everywhere but only on important steps of your asynchronous, multiple microserices algorithms and workflows.
+Explanantions: 
+
+By calling  why.dump() you can get information about the set of calls explained with "why" that happened before calling the dump function. 
+You do not have to put the why() calls everywhere but only on important steps of your asynchronous, multiple microservices, algorithms and workflows.
+
+All the exceptions in why guarded functions get tracked and automatically logged  
+By manually calling why.dump() you can display context information on the caught exceptions.
+The history of the calls reveals the order of the calls.  
  
- 
- Observations:
- When all the related asynchronous calls are done, the why implementations will call the logger.logWhy function. You are responsible of properly implementing a logWhy function.
- 
- In the swarm enabled systems (see SwarmESB project), the why functions handles also the accounting of swarm contexts so you do not have to call the S function for callbacks. 
+Observations:
+     When all the related asynchronous calls are done, the why implementations will call the logger.logWhy function. You are responsible of properly implementing a logWhy function.
+    In the swarm enabled systems (see SwarmESB project), the why functions handles also the accounting of swarm contexts so you do not have to call the S function for callbacks. 
   
  

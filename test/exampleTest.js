@@ -19,8 +19,8 @@ function func(callback){
 
 assert.callback("Test example", function(end){
     func.why("Demonstrate attaching descriptions at runtime")( function(err, result){
-        //console.log(result);
-        assert.equal(result.whystack.length, 2);
+        console.log(result);
+        assert.equal(result.whystack.length, 3);
         end();
-    });
+    }.why("Callback for func"));
 }.why("Test callback"));
