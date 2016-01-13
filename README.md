@@ -1,10 +1,15 @@
-# tracker
-why module provides a novel method for tracking errors and for tracking execution of complex asynchrounous Java Script (node.js code).
+# whys
+"whys" module provides a novel method for tracking errors and for tracking execution of complex asynchrounous Java Script (node.js code).
  This library is created for helping debugging of complex SwarmESB systems but it can be used in other projects. 
 
-The why module works by adding a why function the the Function prototype. Basically for every call of an "important" function you can explain "why" that function get called
+The why module works by adding a 'why' function the the Function prototype. Basically for every call of an "important" function you can explain why that function gets called.
  
-For example you can do things like:
+##Usage:
+ Somewhere in your project do a 
+ var why = require("whys");
+ 
+ 
+Everywhere you want you can do things like:
  
  Example 1:
  
@@ -20,7 +25,7 @@ For example you can do things like:
      f.why("Specific call of f")();
  
 
-Commented example:
+ Example 4 (Commented example):
 
     var assert = require("semantic-firewall").assert;
     var logger = require("semantic-firewall").logger;
@@ -71,7 +76,7 @@ The output of the commented example is:
            other: undefined } ],
       exceptionContextSource: undefined }
 
-Explanantions: 
+Explanations: 
 
 By calling  why.dump() you can get information about the set of calls explained with "why" that happened before calling the dump function. 
 You do not have to put the why() calls everywhere but only on important steps of your asynchronous, multiple microservices, algorithms and workflows.
@@ -85,3 +90,6 @@ Observations:
     In the swarm enabled systems (see SwarmESB project), the why functions handles also the accounting of swarm contexts so you do not have to call the S function for callbacks. 
   
  
+## Todo
+ 
+ This project is a research project, use carefully. We still analyse performance implications and imagine solutions and new features. 
