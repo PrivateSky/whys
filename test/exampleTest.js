@@ -3,24 +3,24 @@ var logger = require("semantic-firewall").logger;
 var why = require("../lib/why.js");
 
 
-logger.record = function(record){
+logger.record = function(record){  //you have to integrate with your own logging system by overriding this functions
    console.log("Failed assert:",JSON.stringify(record));
 }
 
-function nop(){
+function nop(){  //do nothing but can be recorded in the why history
 
 }
 
 function func(callback){
-    nop.why("For something")();
-    callback(null, why.dump());
+    nop.why("Nop recording")();
+    callback(null, why.dump());   // why.dump() takes the current execution context
 };
 
 
 assert.callback("Test example", function(end){
-    func.why("Demonstrate attaching descriptions to future calls")( function(err, result){
-        console.log(result);
+    func.why("Demonstrate attaching descriptions at runtime")( function(err, result){
+        //console.log(result);
         assert.equal(result.whystack.length, 2);
         end();
     });
-}.why("Attach another description"));
+}.why("Test callback"));

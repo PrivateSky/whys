@@ -30,7 +30,7 @@ function func(callback){
 
 assert.callback("Test example", function(end){
     func.why("Demonstrate attaching descriptions to future calls")( function(err, result){
-        console.log(result);
+        //console.log(result);
         assert.notequal(result.whystack, null);
         assert.equal(result.whystack.length, 2);
         end();
