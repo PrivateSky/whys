@@ -1,6 +1,6 @@
 {
-  "name": "why",
-  "description": "Track your calls by calling the why functions ",
+  "name": "whys",
+  "description": "Track your calls by calling the why functions and get a stack of 'whys'",
   "version": "0.1.1",
   "homepage": "https://github.com/salboaie/semantic-firewall",
   "author": {
@@ -34,7 +34,7 @@
       "url": "http://www.gnu.org/licenses/lgpl.html"
     }
   ],
-  "_id": "why@0.1.1",
+  "_id": "whys@0.1.1",
   "dependencies" : {
   },
   "optionalDependencies": {},

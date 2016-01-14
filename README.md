@@ -93,3 +93,9 @@ Observations:
 ## Todo
  
  This project is a research project, use carefully. We still analyse performance implications and imagine solutions and new features. 
+ 
+ Major milestones in front:
+ - a method to know if a functions is guarded by an why or not..
+ - integrate with SwarmESB
+ - integrate in asynchron library 
+ 
