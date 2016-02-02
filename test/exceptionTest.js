@@ -1,6 +1,10 @@
-var assert = require("semantic-firewall").assert;
-var logger = require("semantic-firewall").logger;
+var assert = require("double-check").assert;
 var why = require("../lib/why.js");
+
+var logger = require("double-check").logger;
+
+logger.logWhy = function(){
+}
 
 
 var f1 = function(callback){
@@ -16,7 +20,7 @@ var f2 = function(flag, callback){
 
 assert.callback("Test with exception", function(end){
     logger.record = function(record){
-        console.log(JSON.stringify(record));
+        //console.log(JSON.stringify(record));
         end();
     }
 

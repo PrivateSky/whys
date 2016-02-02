@@ -1,6 +1,9 @@
-var assert = require("semantic-firewall").assert;
+var assert = require("double-check").assert;
 var why = require("../lib/why.js");
+var logger = require("double-check").logger;
 
+logger.logWhy = function(){
+}
 
 function nop(){
 
@@ -22,7 +25,7 @@ var f2 = function(flag, callback){
 assert.callback("Test with true argument", function(end){
     f2.why("Forced context")(true, function(err, result){
 
-        assert.equal(result.whystack.length, 4);
+        assert.equal(result.whystack.length, 3);
         end();
     });
 }.why(" Test with true argument"));
@@ -32,9 +35,8 @@ assert.callback("Test with true argument", function(end){
 
 assert.callback("Test with false argument", function(end){
     f2.why("Forced context")(false, function(err, result){
-        //console.log(result);
-        console.log(JSON.stringify(result));
-        assert.equal(result.whystack.length, 3);
+        //console.log(JSON.stringify(result));
+        assert.equal(result.whystack.length, 2);
         //assert.equal(result, "abcd");
         end();
     });
