@@ -2,7 +2,7 @@
 "whys" module provides a novel method for tracking errors and for tracking execution of complex asynchrounous Java Script (node.js code).
  This library is created for helping debugging of complex SwarmESB systems but it can be used in other projects. 
 
-The why module works by adding a 'why' function the the Function prototype. Basically for every call of an "important" function you can explain why that function gets called.
+The why module works by adding a 'why' function the the Function prototype. Basically for every call of an "important" function you can explain why that function get called.
  
 ##Usage:
  Somewhere in your project do a 
@@ -13,11 +13,11 @@ Everywhere you want you can do things like:
  
  Example 1:
  
-    var a = function().why("Because i want so"); // a will be a function but at each call the why subsystem will know why it got called
+    var a = function().why("Because I want so"); // a will be a function but at each call the why subsystem will know why it got called
   
  Example 2:
   
-    function async(function(){}.why("Because this is a callback and asynchronously called sometimes");
+    function async(function(){}.why("Because this is a callback and is asynchronously called sometimes");
  
  Example 3:
  
@@ -86,7 +86,7 @@ By manually calling why.dump() you can display context information on the caught
 The history of the calls reveals the order of the calls.  
  
 Observations:
-     When all the related asynchronous calls are done, the why implementations will call the logger.logWhy function. You are responsible of properly implementing a logWhy function.
+    When all the related asynchronous calls are done, the why implementations will call the logger.logWhy function. You are responsible of properly implementing a logWhy function.
     In the swarm enabled systems (see SwarmESB project), the why functions handles also the accounting of swarm contexts so you do not have to call the S function for callbacks. 
   
  
@@ -95,7 +95,6 @@ Observations:
  This project is a research project, use carefully. We still analyse performance implications and imagine solutions and new features. 
  
  Major milestones in front:
- - a method to know if a functions is guarded by an why or not..
  - integrate with SwarmESB
- - integrate in asynchron library 
+  
  
