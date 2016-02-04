@@ -27,8 +27,8 @@ Everywhere you want you can do things like:
 
  Example 4 (Commented example):
 
-    var assert = require("semantic-firewall").assert;
-    var logger = require("semantic-firewall").logger;
+    var assert = require("double-check").assert;
+    var logger = require("double-check").logger;
     var why = require("../lib/why.js");
     
     
