@@ -1,7 +1,8 @@
 {
   "name": "whys",
   "description": "Track your calls by calling the why functions and get a stack of 'whys'",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "_id": "whys@0.1.2",
   "homepage": "https://github.com/salboaie/whys",
   "author": {
     "name": "Alboaie Sinica",
@@ -34,7 +35,6 @@
       "url": "http://www.gnu.org/licenses/lgpl.html"
     }
   ],
-  "_id": "whys@0.1.1",
   "dependencies" : {
   },
   "optionalDependencies": {},
