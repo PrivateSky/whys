@@ -94,7 +94,6 @@ Observations:
  
  This project is a research project, use carefully. We still analyse performance implications and imagine solutions and new features. 
  
- Major milestones in front:
- - integrate with SwarmESB
+ Major milestones in front: integrate with asynchron library and SwarmESB
   
  
