@@ -9,7 +9,7 @@ The why module works by adding a 'why' function the the Function prototype. Basi
  var why = require("whys");
  
  
-Everywhere you want you can do things like:
+On any function you can do things like:
  
  Example 1:
  
