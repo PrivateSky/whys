@@ -6,23 +6,31 @@
 require("../lib/why.js");
 
 function f1() {
+
     f2.why("f1 to f2")();
+    throw new Error();
+
 }
 
 function f2(){
     function call() {
-        f3();
-    };
+            f3()
+    }
     setTimeout.why("Frist timeout")(call.why("from f2"),10);
+    setTimeout.why("Second timeout")(call.why("from f2"),10);
 }
 
 function f3(){
-    setTimeout.why("Timeout")(f4.why("F3 to F4"));
-   // setTimeout(f4.why("F3 to F4"));
+    setTimeout.why("Timeout from f3")(f4.why("F3 to F4"));
 }
 
 function f4(){
     console.log();
 }
 
-f1.why("FirstCallOfF1")("FirstCallOfF1 args");
+try {
+    f1.why("FirstCallOfF1")("FirstCallOfF1 args");
+}
+catch(exception){
+
+}
