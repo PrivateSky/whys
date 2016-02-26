@@ -8,13 +8,14 @@ require("../lib/why.js");
 function f1() {
 
     f2.why("f1 to f2")();
-    throw new Error();
+
 
 }
 
 function f2(){
     function call() {
             f3()
+        throw new Error();
     }
     setTimeout.why("Frist timeout")(call.why("from f2"),10);
     setTimeout.why("Second timeout")(call.why("from f2"),10);
@@ -34,3 +35,10 @@ try {
 catch(exception){
 
 }
+
+
+
+process.on('uncaughtException', function (error) {
+    console.log(error.stack);
+
+});
