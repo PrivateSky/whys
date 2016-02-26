@@ -1,4 +1,4 @@
-var why = require("whys");
+var why = require("../lib/why.js");
 
 
 
