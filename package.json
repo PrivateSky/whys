@@ -1,8 +1,8 @@
 {
   "name": "whys",
   "description": "Track your calls by calling the why functions and get a stack of 'whys'",
-  "version": "0.1.2",
-  "_id": "whys@0.1.2",
+  "version": "0.2.1",
+  "_id": "whys@0.2.1",
   "homepage": "https://github.com/salboaie/whys",
   "author": {
     "name": "Alboaie Sinica",
@@ -28,7 +28,7 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "main": "./lib/sf.js",
+  "main": "./lib/why.js",
   "licenses": [
     {
       "type": "LGPL",
