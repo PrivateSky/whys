@@ -9,13 +9,12 @@ process.on('uncaughtException', function (error) {
 
 function f(){
     console.log("Throwing...");
-    throw new Error("Error");
 }
 
 
 function flow(){
+    setTimeout.why("sdgds")(f.why("Call setTimeout 100"), 1000);
     throw new Error("Error");
-    setTimeout(f.why("Call setTimeout 100"), 1000);
 }
 
 

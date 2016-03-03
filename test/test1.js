@@ -18,11 +18,10 @@ function f2(){
         throw new Error();
     }
     setTimeout.why("Frist timeout")(call.why("from f2"),10);
-    setTimeout.why("Second timeout")(call.why("from f2"),10);
 }
 
 function f3(){
-    setTimeout.why("Timeout from f3")(f4.why("F3 to F4"));
+    setTimeout.why("Timeout from f3")(f4.why("F3 to F4"),10);
 }
 
 function f4(){
