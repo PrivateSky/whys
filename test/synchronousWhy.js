@@ -5,6 +5,9 @@ var assert = require("double-check").assert;
 
 var why = require("../lib/why.js");
 
+process.env['RUN_WITH_WHYS'] = true;
+
+
 assert.callback("Simple synchronous why", function(end) {
 
     function caller(){

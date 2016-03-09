@@ -2,6 +2,7 @@ var assert = require("double-check").assert;
 
 var why = require("../lib/why.js");
 
+process.env['RUN_WITH_WHYS'] = true;
 
 function asyncFunction(callback){
     setTimeout(callback, 100);

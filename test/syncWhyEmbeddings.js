@@ -5,7 +5,7 @@ var assert = require("double-check").assert;
 
 var why = require("../lib/why.js");
 
-
+process.env['RUN_WITH_WHYS'] = true;
 
 assert.callback("Test why embeddings", function(end) {
 
