@@ -11,7 +11,7 @@ process.env['HIDE_EXECUTION'] = true;
 
 function caller(){
     func1.why("func1 1")();
-    func1.why("func1 2")("soma arg");
+    func1.why("func1 2")("some arg");
 }
 function func1(){
     func2.why("func2 1")();
