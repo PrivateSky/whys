@@ -18,9 +18,9 @@ assert.callback("Sync and Async Embeddings", function(end) {
     function callback(){
         var executionSummary = why.getGlobalCurrentContext().getExecutionSummary();
 
-        assert.equal(executionSummary.calls.hasOwnProperty("First Call"),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Motivation1 AND Motivation2'),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Callback Motivation1 AND Callback Motivation2'),true);
+        assert.equal(executionSummary.hasOwnProperty("First Call"),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Motivation1 AND Motivation2'),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Callback Motivation1 AND Callback Motivation2'),true);
         end();
     }
     caller.why("First Call")();

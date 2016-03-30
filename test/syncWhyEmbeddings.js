@@ -14,8 +14,8 @@ assert.callback("Test why embeddings", function(end) {
     }
     function callback(arg1,arg2){
         var executionSummary = why.getGlobalCurrentContext().getExecutionSummary();
-        assert.equal(executionSummary.calls.hasOwnProperty("First Call"),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Motivation1 AND Motivation2 AND Motivation3'),true);
+        assert.equal(executionSummary.hasOwnProperty("First Call"),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Motivation1 AND Motivation2 AND Motivation3'),true);
         end();
 
     }

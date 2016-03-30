@@ -16,10 +16,10 @@ assert.callback("Simple why with callback", function(end) {
     }
     function callback(arg1,arg2){
         var executionSummary = why.getGlobalCurrentContext().getExecutionSummary();
-        assert.equal(executionSummary.calls.hasOwnProperty("First Call"),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Call a callback'),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Callback call'),true);
-        assert.equal(executionSummary.calls["First Call"].args.length === 0,true);
+        assert.equal(executionSummary.hasOwnProperty("First Call"),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Call a callback'),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Callback call'),true);
+        assert.equal(executionSummary["First Call"].args.length === 0,true);
         end();
     }
     caller.why("First Call")();

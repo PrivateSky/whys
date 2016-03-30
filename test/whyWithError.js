@@ -25,11 +25,11 @@ assert.callback("Simple error generation why", function(end) {
 
     function errorTreater(err){
         var executionSummary = why.getGlobalCurrentContext().getExecutionSummary();
-        assert.equal(executionSummary.calls.hasOwnProperty("First Call"),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Generate an error'),true);
-        assert.equal(executionSummary.calls["First Call"].calls.hasOwnProperty('Error treatment'),true);
-        assert.equal(executionSummary.calls["First Call"].calls['Generate an error'].hasOwnProperty('exception'),true);
-        assert.equal(executionSummary.calls["First Call"].calls['Generate an error']['exception'].logged,true);
+        assert.equal(executionSummary.hasOwnProperty("First Call"),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Generate an error'),true);
+        assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Error treatment'),true);
+        assert.equal(executionSummary["First Call"].calls['Generate an error'].hasOwnProperty('exception'),true);
+        assert.equal(executionSummary["First Call"].calls['Generate an error']['exception'].logged,true);
         end();
     }
     caller.why("First Call")();
