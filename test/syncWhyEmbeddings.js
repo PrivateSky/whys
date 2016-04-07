@@ -17,7 +17,6 @@ assert.callback("Test why embeddings", function(end) {
         assert.equal(executionSummary.hasOwnProperty("First Call"),true);
         assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Motivation1 AND Motivation2 AND Motivation3'),true);
         end();
-
     }
     caller.why("First Call")();
 })
