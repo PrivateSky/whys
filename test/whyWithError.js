@@ -11,20 +11,20 @@ assert.callback("Simple error generation why", function(end) {
 
     function caller(){
         try{
-            errorGenerator.why("Generate an error")();
+            errorGenerator.why("Generate an error")("errorArg");
         }
         catch(err)
         {
             errorTreater.why("Error treatment")(err);
+            setTimeout(testExecution,10)
         }
     }
 
-    function errorGenerator(){
-        throw new Error("Test error");
-    }
-
-    function errorTreater(err){
+    function testExecution(){
         var executionSummary = why.getGlobalCurrentContext().getExecutionSummary();
+
+
+
         assert.equal(executionSummary.hasOwnProperty("First Call"),true);
         assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Generate an error'),true);
         assert.equal(executionSummary["First Call"].calls.hasOwnProperty('Error treatment'),true);
@@ -32,5 +32,13 @@ assert.callback("Simple error generation why", function(end) {
         assert.equal(executionSummary["First Call"].calls['Generate an error']['exception'].logged,true);
         end();
     }
+
+    function errorGenerator(){
+        throw new Error("Test error");
+    }
+
+    function errorTreater(err){
+    }
+
     caller.why("First Call")();
 })
