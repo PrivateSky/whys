@@ -1,8 +1,8 @@
 {
   "name": "whys",
   "description": "Track your calls by calling the why functions and get a stack of 'whys'",
-  "version": "0.2.1",
-  "_id": "whys@0.2.1",
+  "version": "0.2.3",
+  "_id": "whys@0.2.3",
   "homepage": "https://github.com/salboaie/whys",
   "author": {
     "name": "Alboaie Sinica",
