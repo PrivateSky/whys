@@ -36,6 +36,7 @@
     }
   ],
   "dependencies" : {
+	"double-check": ">=0.1.5"
   },
   "optionalDependencies": {},
   "_engineSupported": true,
